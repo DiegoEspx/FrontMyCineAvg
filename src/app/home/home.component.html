@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Películas y Series</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Fondo blanco grisáceo */
+            color: #333; /* Texto en gris oscuro */
+            font-family: 'Arial', sans-serif;
+        }
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 3.2em;
+            text-align: center;
+            background: linear-gradient(180deg, #07d0e7, #007bff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card {
+            background-color: #f8f9fa; /* Fondo blanco grisáceo */
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: translateY(-13px);
+            box-shadow: 0 3px 20px rgba(3, 231, 243, 0.888);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff; /* Azul Bootstrap */
+            border-color: #007bff; /* Azul Bootstrap */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            margin-top: 1em;
+            border-radius: 25px;
+            font-size: 1.2em;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(180deg, #099ee2, #7d46da); 
+            border-color: #099ee2;
+        }
+        .btn-primary:focus {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Sombra azul */
+        }
+        .card-title {
+            color: #007bff; /* Azul Bootstrap */
+            font-size: 2em;
+            font-weight: 790;
+            text-align: center;
+        }
+        .card-text {
+            color: #3b3a3a;
+            font-size: 1.2em;
+            margin-bottom: 0.3em;
+            margin-left: 1.6em;
+        }
+        .image-container {
+            width: 100%; /* Establece el ancho del contenedor */
+            height: 400px; /* Establece la altura deseada */
+            overflow: hidden; /* Evita que las imágenes desborden el contenedor */
+            display: flex; /* Utiliza Flexbox para alinear elementos */
+            justify-content: center; /* Centra horizontalmente las imágenes */
+            align-items: center; /* Centra verticalmente las imágenes */
+            margin-bottom: 1em;
+        }
+        .card-img-top {
+            width: auto; /* Establece el ancho de la imagen para que se ajuste al contenedor */
+            height: 100%; /* Establece la altura de la imagen para que se ajuste al contenedor */
+            display: block; /* Elimina el espacio adicional debajo de las imágenes */
+            object-fit: cover; /* Escala la imagen para que se ajuste al contenedor sin distorsión, cubriendo el área visible */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h3><strong>Películas y Series</strong></h3>
+        <div class="row">
+            <div class="col-md-4" *ngFor="let pelicula of peliculas">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pelicula.nombrePelicula }}</h5>
+                        <div class="image-container">
+                            <img class="card-img-top" [src]="pelicula.img" alt="Imagen de {{ pelicula.nombrePelicula }}">
+                        </div>
+                        <p class="card-text"><strong>Duración:</strong> {{ pelicula.duracion }}</p>
+                        <p class="card-text"><strong>Género:</strong> {{ pelicula.genero }}</p>
+                        <p class="card-text"><strong>Fecha de Estreno:</strong> {{ pelicula.fechaEstreno }}</p>
+                        <p class="card-text"><strong>País:</strong> {{ pelicula.pais }}</p>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" (click)="editarPelicula(pelicula.id)" title="Editar">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" *ngFor="let serie of series">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ serie.nombreSerie }}</h5>
+                        <div class="image-container">
+                            <img class="card-img-top" [src]="serie.img" alt="Imagen de {{ serie.nombreSerie }}">
+                        </div>
+                        <p class="card-text"><strong>Duración:</strong> {{ serie.duracion }}</p>
+                        <p class="card-text"><strong>Género:</strong> {{ serie.genero }}</p>
+                        <p class="card-text"><strong>Fecha de Estreno:</strong> {{ serie.fechaEstreno }}</p>
+                        <p class="card-text"><strong>País:</strong> {{ serie.pais }}</p>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" (click)="editarSerie(serie.id)" title="Editar">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

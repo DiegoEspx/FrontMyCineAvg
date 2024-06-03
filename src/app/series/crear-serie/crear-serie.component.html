@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Serie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f8f8f8, #f8f5f5);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgb(255, 254, 254);
+            box-shadow: 0 3px 10px rgba(53, 68, 204, 0.733);
+            border-radius: 11px;
+            padding: 1rem;
+            max-width: 40rem;
+            width: 100%;
+        }
+        header h2 {
+            font-size: 2.5em;
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -ms-background-clip: text;
+            -o-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #007bff;
+            margin-left: 1rem;
+        }
+        .form-control {
+            border-radius: 20px;
+        }
+        .form-control:focus {
+            border-color: #00c6ff;
+            box-shadow: 0 0 8px rgba(0, 198, 255, 0.6);
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: background 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #0056b3, #0099cc);
+        }
+        .alert {
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2><strong>Crear Serie</strong></h2>
+        </header>
+        <section>
+            <form [formGroup]="serieForm" (ngSubmit)="crearSerie(serieForm.value)">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="nombreSerie">Nombre de la Serie</label>
+                            <input id="nombreSerie" class="form-control" formControlName="nombreSerie" maxlength="100" autocomplete="off"
+                                placeholder="Ingrese el nombre de la serie" />
+                            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+                                serieForm.get('nombreSerie')!.hasError('required') &&
+                                serieForm.get('nombreSerie')!.touched">
+                                Campo requerido
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show"
+                                *ngIf="serieForm.get('nombreSerie')!.hasError('minlength')">
+                                El contenido es muy corto.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duracion">Duración</label>
+                            <input id="duracion" class="form-control" placeholder="Duración" maxlength="30"
+                                formControlName="duracion" />
+                            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+                                serieForm.get('duracion')!.hasError('required') &&
+                                serieForm.get('duracion')!.touched">
+                                Campo requerido
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show"
+                                *ngIf="serieForm.get('duracion')!.hasError('minlength')">
+                                El contenido es muy corto.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="genero">Género</label>
+                            <input id="genero" class="form-control" placeholder="Género" maxlength="30"
+                                formControlName="genero" />
+                            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+                                serieForm.get('genero')!.hasError('required') &&
+                                serieForm.get('genero')!.touched">
+                                Campo requerido
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show"
+                                *ngIf="serieForm.get('genero')!.hasError('minlength')">
+                                El contenido es muy corto.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaEstreno">Fecha de Estreno</label>
+                            <input id="fechaEstreno" class="form-control" formControlName="fechaEstreno" maxlength="10" placeholder="Fecha de Estreno" />
+                            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+                                serieForm.get('fechaEstreno')!.hasError('required') &&
+                                serieForm.get('fechaEstreno')!.touched">
+                                Campo requerido
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show"
+                                *ngIf="serieForm.get('fechaEstreno')!.hasError('minlength')">
+                                El contenido es muy corto.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pais">País</label>
+                            <input id="pais" class="form-control" formControlName="pais" maxlength="100" placeholder="País" />
+                            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+                                serieForm.get('pais')!.hasError('required') &&
+                                serieForm.get('pais')!.touched">
+                                Campo requerido
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show"
+                                *ngIf="serieForm.get('pais')!.hasError('minlength')">
+                                El contenido es muy corto.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="img">Url de la imagen</label>
+                            <input id="img" class="form-control" formControlName="img" maxlength="2000" placeholder="https://ejemplo.com/imagen.jpg" />
+                            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+                                serieForm.get('img')!.hasError('required') &&
+                                serieForm.get('img')!.touched">
+                                Campo requerido
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show"
+                                *ngIf="serieForm.get('img')!.hasError('minlength')">
+                                El contenido es muy corto.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" [disabled]="!serieForm.valid">Crear</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
